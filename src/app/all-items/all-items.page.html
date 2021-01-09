@@ -10,25 +10,31 @@
   <ion-searchbar padding="2"></ion-searchbar>
 
   <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-grid>
-        <ion-row>
-          <ion-col> {{item.image}} </ion-col>
-          <ion-col
-            ><ion-grid
-              ><ion-row
-                ><ion-col
-                  ><ion-header>{{item.name}}</ion-header></ion-col
-                ></ion-row
-              ><ion-row
-                ><ion-col>{{item.description}}</ion-col></ion-row
-              ></ion-grid
-            ></ion-col
-          >
-        </ion-row>
-      </ion-grid>
-    </ion-item>
+    <ion-item-sliding *ngFor="let item of items">
+      <ion-item (click)="itemDetails()">
+        <ion-item>
+          <ion-avatar slot="start">
+            <img [src]="item.image" />
+          </ion-avatar>
+          <ion-label>
+            <h3>{{item.name}}</h3>
+            <p>{{item.description}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="destroyItem()" color="danger">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
+
+  <ion-item-sliding>
+    <ion-item-options side="start">
+      <ion-item-option color="danger" expandable> Delete </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
 </ion-content>
 <script>
   this.items.forEach((item) => {});

@@ -15,5 +15,13 @@ export class AllItemsPage implements OnInit {
     this.items = this.ItemService.getAllItems();
   }
 
-  openSearch() {}
+  itemDetails() {
+    //Open an item details modal
+    console.log('Details');
+  }
+
+  destroyItem() {
+    //Move selected item to bin
+    console.log('Bin');
+  }
 }
