@@ -5,5 +5,12 @@
 </ion-header>
 
 <ion-content>
+  <ion-searchbar></ion-searchbar>
 
+  <ion-list>
+    <ion-item *ngFor="let item of items"> {{item.image}} </ion-item>
+  </ion-list>
 </ion-content>
+<script>
+  this.items.forEach((item) => {});
+</script>
