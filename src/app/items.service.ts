@@ -16,7 +16,8 @@ export class ItemsService {
       description: 'Description 1',
       address: 'Address 1',
       reminder: 'Reminder 1',
-      image: 'Image 1',
+      image:
+        'https://user-images.githubusercontent.com/2351721/31314483-7611c488-ac0e-11e7-97d1-3cfc1c79610e.png', //Temp test image
     },
     {
       id: 'item2',
@@ -24,14 +25,12 @@ export class ItemsService {
       description: 'Description 2',
       address: 'Address 2',
       reminder: 'Reminder 2',
-      image: 'Image 2',
+      image:
+        'https://user-images.githubusercontent.com/2351721/31314483-7611c488-ac0e-11e7-97d1-3cfc1c79610e.png', //Temp test image
     },
   ];
 
   getAllItems() {
     return [...this.items];
-  }
-
- 
   }
 }
