@@ -5,13 +5,8 @@ import { ItemDetailsPage } from './item-details/item-details.page';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'all-items',
     pathMatch: 'full',
-  },
-  {
-    path: 'dashboard',
-    loadChildren: () =>
-      import('./dashboard/dashboard.module').then((m) => m.DashboardPageModule),
   },
   {
     path: 'item-details',

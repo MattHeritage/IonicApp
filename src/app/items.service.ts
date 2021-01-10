@@ -55,4 +55,15 @@ export class ItemsService {
   addNewItem(newItem: Item) {
     this.items.push(newItem);
   }
+  destroyItem(id: string) {
+    //Remove item from list
+    this.getAllItems().forEach((item) => {
+      if (item.id == id) {
+        console.log('Destroyed item id=' + item.id);
+        this.item_ = item;
+        const itemIndex = this.getAllItems().indexOf(item);
+        this.items.splice(itemIndex);
+      }
+    });
+  }
 }

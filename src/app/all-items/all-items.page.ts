@@ -10,13 +10,14 @@ import { ItemsService } from '../items.service';
 export class AllItemsPage implements OnInit {
   constructor(private ItemService: ItemsService) {}
   items: Item[];
-  ngOnInit() {
-    //Grab items from service
-    this.items = this.ItemService.getAllItems();
-  }
+  ngOnInit() {}
   destroyItem() {
     //Move selected item to bin
     console.log('Bin');
+  }
+  ionViewWillEnter() {
+    //Grab items from service
+    this.items = this.ItemService.getAllItems();
   }
 
   fullitems: Item[];

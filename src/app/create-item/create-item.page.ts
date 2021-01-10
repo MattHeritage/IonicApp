@@ -6,7 +6,7 @@ import {
   CameraSource,
   CameraResultType,
 } from '@capacitor/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { Item } from '../item-details/item-detail.model';
 import { ItemsService } from '../items.service';
 @Component({
@@ -16,6 +16,7 @@ import { ItemsService } from '../items.service';
 })
 export class CreateItemPage implements OnInit {
   constructor(
+    private navCtrl: NavController,
     private alertCtrl: AlertController,
     private itemsService: ItemsService
   ) {}
@@ -23,12 +24,12 @@ export class CreateItemPage implements OnInit {
     'id',
     'itemName',
     'Desc',
-    [152, 532],
+    [15, 51],
     'date',
     'img',
     false
   ); //Replace these default values
-  @ViewChild('form', { static: true }) form: NgForm;
+
   ngOnInit() {}
 
   loc: string;
@@ -50,12 +51,17 @@ export class CreateItemPage implements OnInit {
     });
   }
   createItem(form: NgForm) {
+    //Get data from form
     console.log(form.value);
     this.item.image = this.itemPhoto;
+    this.item.name = form.value['item-name'];
+    this.item.description = form.value['description'];
     this.itemsService.addNewItem(this.item);
+    this.navCtrl.back();
   }
   itemPhoto: string;
   getPhoto() {
+    //Take or get photo from gallery
     Plugins.Camera.getPhoto({
       quality: 50,
       source: CameraSource.Prompt,
