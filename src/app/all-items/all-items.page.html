@@ -26,7 +26,10 @@
         </ion-item>
       </ion-item>
       <ion-item-options side="end">
-        <ion-item-option (click)="destroyItem()" color="danger">
+        <ion-item-option
+          (click)="destroyItem(item.id,item.name)"
+          color="danger"
+        >
           <ion-icon name="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>

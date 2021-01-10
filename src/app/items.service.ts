@@ -16,24 +16,22 @@ export class ItemsService {
 
   private items: Item[] = [
     {
-      id: 'item1',
+      id: 1,
       name: 'Item 1',
       description: 'Description 1',
       address: [],
       reminder: 'Reminder 1',
       image:
         'https://user-images.githubusercontent.com/2351721/31314483-7611c488-ac0e-11e7-97d1-3cfc1c79610e.png', //Temp test image
-      inBin: false,
     },
     {
-      id: 'item2',
+      id: 2,
       name: 'Item 2',
       description: 'Description 2',
       address: [],
       reminder: 'Reminder 2',
       image:
         'https://user-images.githubusercontent.com/2351721/31314483-7611c488-ac0e-11e7-97d1-3cfc1c79610e.png', //Temp test image
-      inBin: false,
     },
   ];
 
@@ -42,7 +40,7 @@ export class ItemsService {
   }
 
   item_: Item;
-  getItem(id: string) {
+  getItem(id: number) {
     this.getAllItems().forEach((item) => {
       if (item.id == id) {
         console.log('Clicked item id=' + item.id);
@@ -55,14 +53,15 @@ export class ItemsService {
   addNewItem(newItem: Item) {
     this.items.push(newItem);
   }
-  destroyItem(id: string) {
+  destroyItem(id: number) {
     //Remove item from list
     this.getAllItems().forEach((item) => {
       if (item.id == id) {
         console.log('Destroyed item id=' + item.id);
         this.item_ = item;
         const itemIndex = this.getAllItems().indexOf(item);
-        this.items.splice(itemIndex);
+        console.log(this.items[itemIndex]);
+        this.items.splice(itemIndex, 1);
       }
     });
   }

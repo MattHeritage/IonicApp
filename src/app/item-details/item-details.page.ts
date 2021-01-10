@@ -19,7 +19,7 @@ export class ItemDetailsPage implements OnInit {
     this.currentRoute.paramMap.subscribe((paramM) => {
       if (paramM.has('itemId')) {
         const currentItem = paramM.get('itemId');
-        this.selectedItem = this.itemsService.getItem(currentItem);
+        this.selectedItem = this.itemsService.getItem(parseInt(currentItem));
       }
     });
   }

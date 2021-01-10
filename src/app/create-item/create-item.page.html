@@ -23,7 +23,14 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Reminder date</ion-label>
-      <ion-datetime min="2021-01-01"></ion-datetime>
+      <ion-datetime min="2021-01-01" ngModel name="dt-date"></ion-datetime>
+
+      <ion-label position="floating">Reminder time</ion-label>
+      <ion-datetime
+        displayFormat="h:mm a"
+        ngModel
+        name="dt-time"
+      ></ion-datetime>
     </ion-item>
     <ion-grid>
       <ion-row>

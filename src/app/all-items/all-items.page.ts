@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { Item } from '../item-details/item-detail.model';
 import { ItemsService } from '../items.service';
 
@@ -8,12 +9,15 @@ import { ItemsService } from '../items.service';
   styleUrls: ['./all-items.page.scss'],
 })
 export class AllItemsPage implements OnInit {
-  constructor(private ItemService: ItemsService) {}
+  constructor(
+    private ItemService: ItemsService,
+    private alertCtrl: AlertController
+  ) {}
   items: Item[];
   ngOnInit() {}
-  destroyItem() {
-    //Move selected item to bin
-    console.log('Bin');
+  destroyItem(id: number, itemName: string) {
+    this.ItemService.destroyItem(id);
+    this.items = this.ItemService.getAllItems();
   }
   ionViewWillEnter() {
     //Grab items from service

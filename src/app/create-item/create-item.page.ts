@@ -6,7 +6,7 @@ import {
   CameraSource,
   CameraResultType,
 } from '@capacitor/core';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, IonDatetime, NavController } from '@ionic/angular';
 import { Item } from '../item-details/item-detail.model';
 import { ItemsService } from '../items.service';
 @Component({
@@ -20,21 +20,13 @@ export class CreateItemPage implements OnInit {
     private alertCtrl: AlertController,
     private itemsService: ItemsService
   ) {}
-  item: Item = new Item(
-    'id',
-    'itemName',
-    'Desc',
-    [15, 51],
-    'date',
-    'img',
-    false
-  ); //Replace these default values
+  item: Item = new Item(-1, 'itemName', 'Desc', [15, 51], 'date', 'img'); //Replace these default values
 
   ngOnInit() {}
 
   loc: string;
   getUserLocation(el) {
-    //Makesure plugin can be used
+    //Make sure plugin can be used
     if (!Capacitor.isPluginAvailable('Geolocation')) {
       return;
     }
@@ -50,15 +42,7 @@ export class CreateItemPage implements OnInit {
         this.item.address[3];
     });
   }
-  createItem(form: NgForm) {
-    //Get data from form
-    console.log(form.value);
-    this.item.image = this.itemPhoto;
-    this.item.name = form.value['item-name'];
-    this.item.description = form.value['description'];
-    this.itemsService.addNewItem(this.item);
-    this.navCtrl.back();
-  }
+
   itemPhoto: string;
   getPhoto() {
     //Take or get photo from gallery
@@ -78,5 +62,23 @@ export class CreateItemPage implements OnInit {
         console.log(err);
         return false;
       });
+  }
+  reminderDT: IonDatetime;
+  createItem(form: NgForm) {
+    //Get data from form
+    console.log(form.value);
+    this.item.image = this.itemPhoto;
+    this.item.name = form.value['item-name'];
+    this.item.description = form.value['desc'];
+
+    //Reminder
+    const date: string = form.value['dt-date'];
+    const time: string = form.value['dt-time'];
+    const DT: string = date.slice(0, 10) + ',' + time.slice(11, 16);
+    this.item.reminder = DT;
+
+    //Create new item
+    this.itemsService.addNewItem(this.item);
+    this.navCtrl.back();
   }
 }
