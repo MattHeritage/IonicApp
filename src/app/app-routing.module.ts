@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ItemDetailsPage } from './item-details/item-details.page';
 
 const routes: Routes = [
   {
@@ -14,10 +15,22 @@ const routes: Routes = [
   },
   {
     path: 'item-details',
-    loadChildren: () =>
-      import('./item-details/item-details.module').then(
-        (m) => m.ItemDetailsPageModule
-      ),
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./item-details/item-details.module').then(
+            (m) => m.ItemDetailsPageModule
+          ),
+      },
+      {
+        path: ':itemId',
+        loadChildren: () =>
+          import('./item-details/item-details.module').then(
+            (m) => m.ItemDetailsPageModule
+          ),
+      },
+    ],
   },
   {
     path: 'all-items',

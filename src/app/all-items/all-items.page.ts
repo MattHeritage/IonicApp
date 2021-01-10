@@ -27,7 +27,7 @@ export class AllItemsPage implements OnInit {
 
   fullitems: Item[];
   // search
-  private searchInput(searchText) {
+  searchInput(searchText) {
     if (searchText == '') {
       //If search is empty load all items
       this.items = this.ItemService.getAllItems();

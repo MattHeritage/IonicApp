@@ -33,4 +33,15 @@ export class ItemsService {
   getAllItems() {
     return [...this.items];
   }
+
+  item_: Item;
+  getItem(id: string) {
+    this.getAllItems().forEach((item) => {
+      if (item.id == id) {
+        console.log('Clicked item id=' + item.id);
+        this.item_ = item;
+      }
+    });
+    return this.item_;
+  }
 }
