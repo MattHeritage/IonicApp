@@ -24,4 +24,22 @@ export class AllItemsPage implements OnInit {
     //Move selected item to bin
     console.log('Bin');
   }
+
+  fullitems: Item[];
+  // search
+  private searchInput(searchText) {
+    if (searchText == '') {
+      //If search is empty load all items
+      this.items = this.ItemService.getAllItems();
+    }
+
+    this.items = []; //Clear items
+    this.fullitems = this.ItemService.getAllItems();
+    this.fullitems.forEach((item) => {
+      var lc = item.name.toLowerCase(); //Convert to lower case to ensure every match is found
+      if (lc.includes(searchText.toLowerCase())) {
+        this.items.push(item);
+      }
+    });
+  }
 }
