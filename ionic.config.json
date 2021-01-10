@@ -1,5 +1,7 @@
 {
   "name": "MobileApp",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

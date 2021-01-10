@@ -1,7 +1,17 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>{{selectedItem.name}}</ion-title>
+    <ion-back-button slot="start"></ion-back-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content> {{selectedItem.id}}</ion-content>
+<ion-content>
+  <ion-img src="{{selectedItem.image}}"> </ion-img>
+  <br />
+  <b
+    ><ion-header style="text-align: center">
+      {{selectedItem.name}}
+    </ion-header></b
+  ><br />
+  <hr />
+</ion-content>
