@@ -4,6 +4,7 @@ import {
   FilesystemDirectory,
   FilesystemEncoding,
 } from '@capacitor/core';
+import { readFile } from 'fs';
 import { Item } from 'src/app/item-details/item-detail.model';
 
 @Injectable({
@@ -11,6 +12,8 @@ import { Item } from 'src/app/item-details/item-detail.model';
 })
 export class ItemsService {
   constructor() {
+    this.writeToFile();
+    this.ReadFile();
     //load items from storage here
   }
 
@@ -68,5 +71,36 @@ export class ItemsService {
   getNextId() {
     //Return the next id number
     return this.items[this.items.length - 1].id + 1;
+  }
+  writeToFile() {
+    //Save data to file
+    try {
+      const result = Filesystem.writeFile({
+        path: 'saveIt/items.txt',
+        data: this.formatDataForSave(),
+        directory: FilesystemDirectory.Documents,
+        encoding: FilesystemEncoding.UTF8,
+      });
+    } catch (e) {}
+  }
+  ReadFile() {
+    //Load data from file
+    try {
+      let contents = Filesystem.readFile({
+        path: 'saveIt/items.txt',
+        directory: FilesystemDirectory.Documents,
+        encoding: FilesystemEncoding.UTF8,
+      }).then((file) => {
+        console.log(file.data);
+      });
+    } catch {}
+  }
+  formattedData: string; //Convert data to JSON format
+  formatDataForSave() {
+    this.getAllItems().forEach((item) => {
+      this.formattedData = this.formattedData + JSON.stringify(item) + '\n';
+    });
+
+    return this.formattedData;
   }
 }

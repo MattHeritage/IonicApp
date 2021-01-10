@@ -100,4 +100,8 @@ export class CreateItemPage implements OnInit {
       ],
     });
   }
+  test() {
+    this.itemsService.writeToFile();
+    this.itemsService.ReadFile();
+  }
 }
