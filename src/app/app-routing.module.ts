@@ -51,6 +51,10 @@ const routes: Routes = [
     path: 'bin',
     loadChildren: () => import('./bin/bin.module').then((m) => m.BinPageModule),
   },
+  {
+    path: 'create-item',
+    loadChildren: () => import('./create-item/create-item.module').then( m => m.CreateItemPageModule)
+  },
 ];
 
 @NgModule({
