@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>create-Item</ion-title>
+    <ion-back-button></ion-back-button>
+    <ion-title>Create a new item</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -24,8 +25,18 @@
       <ion-label position="floating">Reminder date</ion-label>
       <ion-datetime min="2021-01-01"></ion-datetime>
     </ion-item>
-
-    <ion-button (click)="getUserLocation()">Get location</ion-button>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3">
+          <ion-button (click)="getUserLocation()"
+            ><ion-icon name="location-outline"></ion-icon
+          ></ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-input disabled="true">{{loc}}</ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
     <ion-button type="submit"></ion-button>
   </form>

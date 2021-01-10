@@ -13,6 +13,7 @@ export class ItemDetailsPage implements OnInit {
     private itemsService: ItemsService,
     private currentRoute: ActivatedRoute
   ) {}
+
   selectedItem: Item;
   ngOnInit() {
     this.currentRoute.paramMap.subscribe((paramM) => {

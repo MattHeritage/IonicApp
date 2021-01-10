@@ -5,6 +5,7 @@ export class Item {
     public description: string,
     public address: number[],
     public reminder: string,
-    public image: string
+    public image: string,
+    public inBin: boolean
   ) {}
 }
