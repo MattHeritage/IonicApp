@@ -51,4 +51,8 @@ export class ItemsService {
     });
     return this.item_;
   }
+
+  addNewItem(newItem: Item) {
+    this.items.push(newItem);
+  }
 }

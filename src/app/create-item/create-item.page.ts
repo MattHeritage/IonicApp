@@ -1,6 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Form, NgForm } from '@angular/forms';
-import { Plugins, Capacitor } from '@capacitor/core';
+import {
+  Plugins,
+  Capacitor,
+  CameraSource,
+  CameraResultType,
+} from '@capacitor/core';
 import { AlertController } from '@ionic/angular';
 import { Item } from '../item-details/item-detail.model';
 import { ItemsService } from '../items.service';
@@ -46,5 +51,26 @@ export class CreateItemPage implements OnInit {
   }
   createItem(form: NgForm) {
     console.log(form.value);
+    this.item.image = this.itemPhoto;
+    this.itemsService.addNewItem(this.item);
+  }
+  itemPhoto: string;
+  getPhoto() {
+    Plugins.Camera.getPhoto({
+      quality: 50,
+      source: CameraSource.Prompt,
+      correctOrientation: true,
+      height: 300,
+      width: 220,
+      resultType: CameraResultType.Base64,
+    })
+      .then((img) => {
+        this.itemPhoto = img.base64String;
+        this.itemPhoto = 'data:image/jpeg;base64, ' + img.base64String;
+      })
+      .catch((err) => {
+        console.log(err);
+        return false;
+      });
   }
 }

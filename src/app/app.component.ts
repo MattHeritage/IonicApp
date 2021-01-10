@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { ItemsService } from './items.service';
 
 @Component({
   selector: 'app-root',
@@ -28,20 +29,16 @@ export class AppComponent implements OnInit {
       icon: 'time',
     },
     {
-      title: 'Removed Items',
-      url: '/bin',
-      icon: 'trash',
-    },
-    {
       title: 'Settings',
       url: '/settings',
       icon: 'settings',
     },
   ];
-  j = 2;
-  public labels = ['Saved items: ???'];
+
+  public labels = ['Total items: ' + this.itemsService.getAllItems().length];
 
   constructor(
+    private itemsService: ItemsService,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar

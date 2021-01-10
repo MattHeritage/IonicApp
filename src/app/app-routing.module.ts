@@ -48,12 +48,11 @@ const routes: Routes = [
       import('./reminders/reminders.module').then((m) => m.RemindersPageModule),
   },
   {
-    path: 'bin',
-    loadChildren: () => import('./bin/bin.module').then((m) => m.BinPageModule),
-  },
-  {
     path: 'create-item',
-    loadChildren: () => import('./create-item/create-item.module').then( m => m.CreateItemPageModule)
+    loadChildren: () =>
+      import('./create-item/create-item.module').then(
+        (m) => m.CreateItemPageModule
+      ),
   },
 ];
 

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-back-button></ion-back-button>
-    <ion-title>Create a new item</ion-title>
+    <ion-title>New item</ion-title>
+    <ion-back-button slot="start"></ion-back-button>
   </ion-toolbar>
 </ion-header>
 
@@ -37,7 +37,9 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+    <ion-button (click)="getPhoto()">Take photo</ion-button>
 
-    <ion-button type="submit"></ion-button>
+    <ion-img [src]="itemPhoto"></ion-img>
+    <ion-button type="submit">Create</ion-button>
   </form>
 </ion-content>
