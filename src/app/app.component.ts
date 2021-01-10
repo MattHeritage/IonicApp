@@ -14,11 +14,6 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Dashboard',
-      url: '/dashboard',
-      icon: 'home',
-    },
-    {
       title: 'All items',
       url: '/all-items',
       icon: 'pricetags',

@@ -5,10 +5,12 @@ import {
   Capacitor,
   CameraSource,
   CameraResultType,
+  LocalNotifications,
 } from '@capacitor/core';
 import { AlertController, IonDatetime, NavController } from '@ionic/angular';
 import { Item } from '../item-details/item-detail.model';
 import { ItemsService } from '../items.service';
+
 @Component({
   selector: 'app-create-item',
   templateUrl: './create-item.page.html',
@@ -65,6 +67,9 @@ export class CreateItemPage implements OnInit {
   }
   reminderDT: IonDatetime;
   createItem(form: NgForm) {
+    //get next item id
+    this.item.id = this.itemsService.getNextId();
+
     //Get data from form
     console.log(form.value);
     this.item.image = this.itemPhoto;
@@ -74,11 +79,25 @@ export class CreateItemPage implements OnInit {
     //Reminder
     const date: string = form.value['dt-date'];
     const time: string = form.value['dt-time'];
-    const DT: string = date.slice(0, 10) + ',' + time.slice(11, 16);
+    const DT: string = date.slice(0, 10) + time.slice(10, 16);
     this.item.reminder = DT;
+    this.CreateNotification(DT, this.item.name, this.item.description);
+    //Create reminder if set
 
     //Create new item
     this.itemsService.addNewItem(this.item);
     this.navCtrl.back();
+  }
+  CreateNotification(DT, name, desc) {
+    const notifs = LocalNotifications.schedule({
+      notifications: [
+        {
+          title: name,
+          body: desc,
+          id: 1,
+          schedule: { at: DT },
+        },
+      ],
+    });
   }
 }

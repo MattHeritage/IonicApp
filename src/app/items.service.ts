@@ -65,4 +65,8 @@ export class ItemsService {
       }
     });
   }
+  getNextId() {
+    //Return the next id number
+    return this.items[this.items.length - 1].id + 1;
+  }
 }
