@@ -46,9 +46,13 @@
     </ion-grid>
     <ion-button (click)="getPhoto()">Take photo</ion-button>
 
-    <ion-img [src]="itemPhoto"></ion-img>
-    <ion-button type="submit" vertical="bottom" horizontal="end" slot="fixed"
-      >Create</ion-button
+    <ion-img style="width: 30%" [src]="itemPhoto"></ion-img>
+    <ion-grid
+      ><ion-row
+        ><ion-col size="12"
+          ><ion-button expand="block" type="submit">Create</ion-button></ion-col
+        ></ion-row
+      ></ion-grid
     >
   </form>
 </ion-content>

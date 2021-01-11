@@ -1,5 +1,6 @@
 <ion-header>
   <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
     <ion-title>Edit item: {{selectedItem.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -45,9 +46,14 @@
     </ion-grid>
     <ion-button (click)="getPhoto()">Take photo</ion-button>
 
-    <ion-img [src]="selectedItem.image"></ion-img>
-    <ion-button type="submit" vertical="bottom" horizontal="end" slot="fixed"
-      >Create</ion-button
+    <ion-img style="width: 30%" [src]="selectedItem.image"></ion-img>
+    <ion-button
+      expand="block"
+      type="submit"
+      vertical="bottom"
+      horizontal="end"
+      slot="fixed"
+      >Save</ion-button
     >
   </form>
 </ion-content>
