@@ -81,7 +81,7 @@ export class CreateItemPage implements OnInit {
     const time: string = form.value['dt-time'];
     const DT: string = date.slice(0, 10) + time.slice(10, 16);
     this.item.reminder = DT;
-    this.CreateNotification(DT, this.item.name, this.item.description);
+    // this.CreateNotification(DT, this.item.name, this.item.description);
     //Create reminder if set
 
     //Create new item
@@ -99,9 +99,5 @@ export class CreateItemPage implements OnInit {
         },
       ],
     });
-  }
-  test() {
-    this.itemsService.writeToFile();
-    this.itemsService.ReadFile();
   }
 }
