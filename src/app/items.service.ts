@@ -19,7 +19,7 @@ export class ItemsService {
   private items: Item[] = [
     {
       id: -1,
-      name: 'Create a new item!',
+      name: 'Create a new item at the top!',
       description: '',
       address: [],
       reminder: '',
