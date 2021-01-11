@@ -43,15 +43,30 @@ const routes: Routes = [
       import('./reminders/reminders.module').then((m) => m.RemindersPageModule),
   },
   {
+    path: 'edit-item',
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./edit-item/edit-item.module').then(
+            (m) => m.EditItemPageModule
+          ),
+      },
+      {
+        path: ':itemId',
+        loadChildren: () =>
+          import('./edit-item/edit-item.module').then(
+            (m) => m.EditItemPageModule
+          ),
+      },
+    ],
+  },
+  {
     path: 'create-item',
     loadChildren: () =>
       import('./create-item/create-item.module').then(
         (m) => m.CreateItemPageModule
       ),
-  },
-  {
-    path: 'edit-item',
-    loadChildren: () => import('./edit-item/edit-item.module').then( m => m.EditItemPageModule)
   },
 ];
 

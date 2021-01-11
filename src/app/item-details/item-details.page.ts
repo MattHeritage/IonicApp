@@ -23,4 +23,7 @@ export class ItemDetailsPage implements OnInit {
       }
     });
   }
+  ionViewWillEnter() {
+    this.selectedItem = this.itemsService.getItem(this.selectedItem.id);
+  }
 }

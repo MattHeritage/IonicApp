@@ -134,6 +134,16 @@ export class ItemsService {
 
     return this.formattedData;
   }
+  editItem(editID: number, editedItem: Item) {
+    console.log(editID);
+    this.items.forEach((item) => {
+      if (item.id == editID) {
+        this.items[this.items.indexOf(item)] = editedItem;
+        console.log('this.items[this.items.indexOf(item)]');
+        this.writeToFile();
+      }
+    });
+  }
 
   createFillerItems() {
     //If no items are in app, fake ones will be created on next load
