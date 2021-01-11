@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
 import { NavController } from '@ionic/angular';
 import { Item } from '../item-details/item-detail.model';
 import { ItemsService } from '../items.service';
@@ -32,7 +33,27 @@ export class EditItemPage implements OnInit {
       }
     });
   }
-
+  itemPhoto: string;
+  getPhoto() {
+    //Take or get photo from gallery
+    Plugins.Camera.getPhoto({
+      quality: 50,
+      source: CameraSource.Prompt,
+      correctOrientation: true,
+      height: 300,
+      width: 220,
+      resultType: CameraResultType.Base64,
+    })
+      .then((img) => {
+        this.itemPhoto = img.base64String;
+        this.itemPhoto = 'data:image/jpeg;base64, ' + img.base64String;
+      })
+      .catch((err) => {
+        console.log(err);
+        return false;
+      });
+  }
+  getUserLocation() {}
   saveEdit(form: NgForm) {
     //get next item id
     //this.item.id = this.itemsService.getNextId();

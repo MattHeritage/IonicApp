@@ -3,7 +3,7 @@
     <ion-title>{{selectedItem.name}}</ion-title>
     <ion-back-button slot="start"></ion-back-button>
     <ion-buttons slot="end">
-      <ion-button
+      <ion-button (click)="removeItem()"
         ><ion-icon name="trash-outline" color="danger"></ion-icon
       ></ion-button>
       <ion-button routerLink="/edit-item/{{selectedItem.id}}"

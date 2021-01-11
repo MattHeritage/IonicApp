@@ -23,11 +23,6 @@ export class AppComponent implements OnInit {
       url: '/reminders',
       icon: 'time',
     },
-    {
-      title: 'Settings',
-      url: '/settings',
-      icon: 'settings',
-    },
   ];
 
   public labels = ['Total items: ' + this.itemsService.getAllItems().length];

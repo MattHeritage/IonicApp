@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { ItemsService } from 'src/app/items.service';
 import { Item } from './item-detail.model';
 
@@ -11,7 +12,8 @@ import { Item } from './item-detail.model';
 export class ItemDetailsPage implements OnInit {
   constructor(
     private itemsService: ItemsService,
-    private currentRoute: ActivatedRoute
+    private currentRoute: ActivatedRoute,
+    private navCtrl: NavController
   ) {}
 
   selectedItem: Item;
@@ -25,5 +27,9 @@ export class ItemDetailsPage implements OnInit {
   }
   ionViewWillEnter() {
     this.selectedItem = this.itemsService.getItem(this.selectedItem.id);
+  }
+  removeItem() {
+    this.itemsService.destroyItem(this.selectedItem.id);
+    this.navCtrl.back();
   }
 }
