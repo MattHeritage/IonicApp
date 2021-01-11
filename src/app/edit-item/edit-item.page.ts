@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
+import {
+  CameraResultType,
+  CameraSource,
+  Capacitor,
+  Plugins,
+} from '@capacitor/core';
 import { NavController } from '@ionic/angular';
 import { Item } from '../item-details/item-detail.model';
 import { ItemsService } from '../items.service';
@@ -47,17 +52,37 @@ export class EditItemPage implements OnInit {
       .then((img) => {
         this.itemPhoto = img.base64String;
         this.itemPhoto = 'data:image/jpeg;base64, ' + img.base64String;
+        this.selectedItem.image = this.itemPhoto;
       })
       .catch((err) => {
         console.log(err);
         return false;
       });
   }
-  getUserLocation() {}
+  loc: string;
+  getUserLocation() {
+    //Make sure plugin can be used
+    if (!Capacitor.isPluginAvailable('Geolocation')) {
+      return;
+    }
+    Plugins.Geolocation.getCurrentPosition().then((geo) => {
+      this.selectedItem.address.push(geo.coords.latitude);
+      this.selectedItem.address.push(geo.coords.longitude);
+      console.log(
+        this.selectedItem.address[2] + ' ' + this.selectedItem.address[3]
+      );
+      //Convert to view on form
+      this.loc =
+        'Lat: ' +
+        this.selectedItem.address[2].toString() +
+        '; Lon: ' +
+        this.selectedItem.address[3];
+    });
+  }
   saveEdit(form: NgForm) {
     //get next item id
     //this.item.id = this.itemsService.getNextId();
-    //this.item.image = this.itemPhoto;
+    this.selectedItem.image = this.itemPhoto;
     this.selectedItem.name = form.value['item-name'];
     this.selectedItem.description = form.value['desc'];
 

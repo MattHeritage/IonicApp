@@ -22,12 +22,12 @@ export class CreateItemPage implements OnInit {
     private alertCtrl: AlertController,
     private itemsService: ItemsService
   ) {}
-  item: Item = new Item(-1, 'itemName', 'Desc', [15, 51], 'date', 'img'); //Replace these default values
+  item: Item = new Item(-1, 'itemName', 'Desc', [15, 51], 'Date', 'img'); //Replace these default values
 
   ngOnInit() {}
 
   loc: string;
-  getUserLocation(el) {
+  getUserLocation() {
     //Make sure plugin can be used
     if (!Capacitor.isPluginAvailable('Geolocation')) {
       return;
@@ -79,7 +79,8 @@ export class CreateItemPage implements OnInit {
     //Reminder
     const date: string = form.value['dt-date'];
     const time: string = form.value['dt-time'];
-    const DT: string = date.slice(0, 10) + time.slice(10, 16);
+    const DT: string = date.slice(0, 10) + time.slice(10, 30);
+    console.log(DT);
     this.item.reminder = DT;
     // this.CreateNotification(DT, this.item.name, this.item.description);
     //Create reminder if set

@@ -43,7 +43,7 @@ export class ItemsService {
   getItem(id: number) {
     this.getAllItems().forEach((item) => {
       if (item.id == id) {
-        console.log('Clicked item id=' + item.id);
+        //      console.log('Clicked item id=' + item.id);
         this.item_ = item;
       }
     });
@@ -63,10 +63,10 @@ export class ItemsService {
     //Remove item from list
     this.getAllItems().forEach((item) => {
       if (item.id == id) {
-        console.log('Destroyed item id=' + item.id);
+        //    console.log('Destroyed item id=' + item.id);
         this.item_ = item;
         const itemIndex = this.getAllItems().indexOf(item);
-        console.log(this.items[itemIndex]);
+        //    console.log(this.items[itemIndex]);
         this.items.splice(itemIndex, 1);
         this.writeToFile();
       }
@@ -79,11 +79,11 @@ export class ItemsService {
   }
   writeToFile() {
     //Save data to file
-    console.log('Save'); //Add the obj beings saved
+    //   console.log('Save'); //Add the obj beings saved
     this.getAllItems().forEach((item) => {
-      console.log(item);
+      //    console.log(item);
     });
-    console.log('End save');
+    //  console.log('End save');
     // console.log(this.formatDataForSave());
     Filesystem.deleteFile({
       path: 'saveIt/items-save.json',
@@ -101,14 +101,14 @@ export class ItemsService {
   private test: Item[] = [];
   ReadFile() {
     //Load data from file
-    console.log('read');
+    //  console.log('read');
     try {
       let contents = Filesystem.readFile({
         path: 'saveIt/items-save.json',
         directory: FilesystemDirectory.Documents,
         encoding: FilesystemEncoding.UTF8,
       }).then((file) => {
-        console.log(file.data);
+        //   console.log(file.data);
         const lines = file.data.trim().split(/\n/g);
         // console.log(file.data);
         lines.forEach((item) => {
@@ -135,11 +135,11 @@ export class ItemsService {
     return this.formattedData;
   }
   editItem(editID: number, editedItem: Item) {
-    console.log(editID);
+    //  console.log(editID);
     this.items.forEach((item) => {
       if (item.id == editID) {
         this.items[this.items.indexOf(item)] = editedItem;
-        console.log('this.items[this.items.indexOf(item)]');
+        // console.log('this.items[this.items.indexOf(item)]');
         this.writeToFile();
       }
     });
