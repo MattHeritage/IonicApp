@@ -27,9 +27,15 @@ export class ItemDetailsPage implements OnInit {
   }
   ionViewWillEnter() {
     this.selectedItem = this.itemsService.getItem(this.selectedItem.id);
+
+    this.date = new Date();
+    this.Sdate = new Date(this.selectedItem.reminder);
   }
   removeItem() {
     this.itemsService.destroyItem(this.selectedItem.id);
     this.navCtrl.back();
   }
+
+  date: Date;
+  Sdate: Date;
 }
