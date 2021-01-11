@@ -2,6 +2,12 @@
   <ion-toolbar>
     <ion-title>{{selectedItem.name}}</ion-title>
     <ion-back-button slot="start"></ion-back-button>
+    <ion-buttons slot="end">
+      <ion-button
+        ><ion-icon name="trash-outline" color="danger"></ion-icon
+      ></ion-button>
+      <ion-button><ion-icon name="create-outline"></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -14,5 +20,5 @@
     </ion-header></b
   ><br />
   <hr />
-  {{selectedItem.description}} {{selectedItem.address}}
+  {{selectedItem.description}} <br />Location: {{selectedItem.address}}
 </ion-content>

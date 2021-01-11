@@ -49,6 +49,10 @@ const routes: Routes = [
         (m) => m.CreateItemPageModule
       ),
   },
+  {
+    path: 'edit-item',
+    loadChildren: () => import('./edit-item/edit-item.module').then( m => m.EditItemPageModule)
+  },
 ];
 
 @NgModule({

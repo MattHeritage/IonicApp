@@ -19,10 +19,10 @@ export class ItemsService {
   private items: Item[] = [
     {
       id: -1,
-      name: 'Testing item1',
-      description: 'Description 1',
+      name: 'Create a new item!',
+      description: '',
       address: [],
-      reminder: 'Reminder 1',
+      reminder: '',
       image:
         'https://user-images.githubusercontent.com/2351721/31314483-7611c488-ac0e-11e7-97d1-3cfc1c79610e.png', //Temp test image
     },
@@ -115,7 +115,7 @@ export class ItemsService {
           this.items.push(JSON.parse(item));
         });
         this.destroyItem(-1);
-        if (this.items.length <= 1) {
+        if (this.items.length <= 0) {
           this.items = this.createFillerItems();
         }
         // console.log(this.items);
